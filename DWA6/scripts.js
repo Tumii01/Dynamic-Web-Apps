@@ -5,17 +5,8 @@
 
 import { books, authors, genres, BOOKS_PER_PAGE } from './data.js';
 
-/**
- * Current page number.
- * @type {number}
- */
-let page = 1;
-
-/**
- * List of books that match the search filters.
- * @type {Object[]}
- */
-let matches = books;
+let page = 1; // Current page number
+let matches = books; // List of books that match the search filters
 
 /**
  * Creates a button element for a book.
@@ -32,11 +23,7 @@ const createButtonElement = ({ author, id, image, title }) => {
   element.setAttribute('data-preview', id);
 
   element.innerHTML = `
-    <img
-      class="preview__image"
-      src="${image}"
-    />
-
+    <img class="preview__image" src="${image}" />
     <div class="preview__info">
       <h3 class="preview__title">${title}</h3>
       <div class="preview__author">${authors[author]}</div>
@@ -46,9 +33,9 @@ const createButtonElement = ({ author, id, image, title }) => {
   return element;
 };
 
-/**
- * Initializes the starting list of book items.
- */
+
+  //Initializes the starting list of book items.
+ 
 const initializeList = () => {
   const starting = document.createDocumentFragment();
   matches.slice(0, BOOKS_PER_PAGE).forEach((book) => {
@@ -95,9 +82,7 @@ settingsTheme.value = prefersDarkMode ? 'night' : 'day';
 document.documentElement.style.setProperty('--color-dark', prefersDarkMode ? '255, 255, 255' : '10, 10, 20');
 document.documentElement.style.setProperty('--color-light', prefersDarkMode ? '10, 10, 20' : '255, 255, 255');
 
-/**
- * Updates the "Show more" button text and remaining book count.
- */
+// Updates the "Show more" button text and remaining book count. 
 const updateListButton = () => {
   const remaining = Math.max(matches.length - page * BOOKS_PER_PAGE, 0);
   const listButton = document.querySelector('[data-list-button]');
@@ -107,39 +92,30 @@ const updateListButton = () => {
   `;
 };
 
-/**
- * Event handler for the search cancel button click.
- */
-const handleSearchCancel = () => {
+// Event handler for the search cancel button click.
+ const handleSearchCancel = () => {
   document.querySelector('[data-search-overlay]').open = false;
 };
 
-/**
- * Event handler for the settings cancel button click.
- */
-const handleSettingsCancel = () => {
+ //Event handler for the settings cancel button click.
+ const handleSettingsCancel = () => {
   document.querySelector('[data-settings-overlay]').open = false;
 };
 
-/**
- * Event handler for the header search button click.
- */
+
+// Event handler for the header search button click.
 const handleHeaderSearchClick = () => {
   document.querySelector('[data-search-overlay]').open = true;
   document.querySelector('[data-search-title]').focus();
 };
 
-/**
- * Event handler for the header settings button click.
- */
+ //Event handler for the header settings button click.
 const handleHeaderSettingsClick = () => {
   document.querySelector('[data-settings-overlay]').open = true;
 };
 
-/**
- * Event handler for the close list button click.
- */
-const handleCloseListClick = () => {
+//Event handler for the close list button click.
+ const handleCloseListClick = () => {
   document.querySelector('[data-list-active]').open = false;
 };
 
@@ -215,10 +191,8 @@ const handleSearchFormSubmit = (event) => {
   document.querySelector('[data-search-overlay]').open = false;
 };
 
-/**
- * Event handler for the "Show more" button click.
- */
-const handleListButtonClick = () => {
+ //Event handler for the "Show more" button click.
+ const handleListButtonClick = () => {
   const fragment = document.createDocumentFragment();
 
   matches.slice(page * BOOKS_PER_PAGE, (page + 1) * BOOKS_PER_PAGE).forEach((book) => {
